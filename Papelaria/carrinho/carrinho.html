@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho de Compras</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="carrinho.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html"><img src="logo.png" alt="Logo"></a>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="/papelaria/pagina1.html">Menu</a></li>
+                    <li><a href="/papelaria/carrinho/carrinho.html">Carrinho</a></li>
+                    <li><a href="/pagina1/pagina1.html">Voltar</a></li>
+
+                    
+                </ul>
+            </nav>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="cart">
+            <div class="container">
+                <h2>Carrinho de Compras</h2>
+                <div id="cartItems">
+                    <!-- Itens do carrinho serão carregados aqui dinamicamente -->
+                </div>
+                <button id="confirmOrderBtn">Confirmar Pedido</button>
+            </div>
+        </section>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="carrinho.js"></script>
+    <script src="/menu.js"></script>
+
+</body>
+</html>

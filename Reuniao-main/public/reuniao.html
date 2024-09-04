@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento de Reunião</title>
+    <link rel="stylesheet" href="reuniao.css">
+    <link rel="icon" type="image/x-icon" href="logo.ico"> <!-- Favicon atualizado -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.13/jspdf.plugin.autotable.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Agendamento de Sala de Reunião</h1>
+        <div class="form-container">
+            <form id="meeting-form">
+                <div class="input-group">
+                    <label for="data">Data</label>
+                    <input type="date" id="data" required>
+                </div>
+                <div class="input-group">
+                    <label for="horario">Horário</label>
+                    <input type="time" id="horario" required>
+                </div>
+                <div class="input-group">
+                    <label for="duracao">Duração (min)</label>
+                    <input type="number" id="duracao" min="30" max="280" step="30" required>
+                </div>
+                <div class="input-group">
+                    <label for="nome-orador">Nome do Orador</label>
+                    <input type="text" id="nome-orador" required>
+                </div>
+                <div class="input-group">
+                    <label for="setor">Setor</label>
+                    <select id="setor" required>
+                        <option value="TI">TI</option>
+                        <option value="Legalização">Legalização</option>
+                        <option value="Diretores">Diretores</option>
+                        <option value="Financeiro">Financeiro</option>
+                        <option value="Fiscal">Fiscal</option>
+                        <option value="RH">RH</option>
+                        <option value="Departamento Pessoal">Departamento Pessoal</option>
+                        <option value="Coordenadores">Coordenadores</option>
+                        <option value="Gerencia">Gerencia</option> <!-- Setor Gerencia adicionado -->
+                        <option value="Contabil">Contabil</option>
+                        <option value="Comercial">Comercial</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="sala">Sala</label>
+                    <select id="sala" required>
+                        <option value="Fundo">Fundo</option>
+                        <option value="Frente">Frente</option>
+                        <option value="Teams">Teams</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="tipo-reuniao">Tipo de Reunião</label>
+                    <select id="tipo-reuniao" required onchange="toggleReuniaoTipo()">
+                        <option value="">Selecione...</option>
+                        <option value="externa">Externa</option>
+                        <option value="interna">Interna</option>
+                    </select>
+                </div>
+                <div class="input-group" id="cliente-group" style="display:none;">
+                    <label for="cliente">Cliente</label>
+                    <input type="text" id="cliente">
+                </div>
+                <div class="input-group" id="funcionario-group" style="display:none;">
+                    <label for="funcionario">Funcionário</label>
+                    <input type="text" id="funcionario">
+                </div>
+                <button type="submit" class="button">Agendar Reunião</button>
+            </form>
+        </div>
+        <div class="actions">
+            <button onclick="toggleCancelForm()" class="button">Cancelar Reunião</button>
+            <button onclick="toggleConsultForm()" class="button">Consultar Reunião</button>
+        </div>
+        <div id="cancel-form" class="form-container" style="display: none;">
+            <h2>Cancelar Reunião</h2>
+            <div class="input-group">
+                <label for="filtro-data">Filtrar por Data</label>
+                <input type="date" id="filtro-data">
+            </div>
+            <div class="input-group">
+                <label for="filtro-cliente">Filtrar por Cliente</label>
+                <input type="text" id="filtro-cliente">
+            </div>
+            <button type="button" class="button" onclick="filterMeetings()">Filtrar</button>
+            <ul id="meeting-list"></ul>
+            <button onclick="cancelSelectedMeetings()" class="button">Cancelar Selecionados</button>
+            <button onclick="closeCancelForm()" class="button">Fechar</button>
+        </div>
+        <div id="consult-form" class="form-container" style="display: none;">
+            <h2>Consultar Reunião</h2>
+            <form>
+                <div class="input-group">
+                    <label for="consulta-data">Data</label>
+                    <input type="date" id="consulta-data">
+                </div>
+                <div class="input-group">
+                    <label for="consulta-cliente">Cliente</label>
+                    <input type="text" id="consulta-cliente">
+                </div>
+                <div class="input-group">
+                    <label for="consulta-orador">Orador</label> <!-- Funcionario trocado para Orador -->
+                    <input type="text" id="consulta-orador">
+                </div>
+                <div class="input-group">
+                    <label for="consulta-sala">Sala</label>
+                    <select id="consulta-sala">
+                        <option value="">Todas</option>
+                        <option value="Fundo">Fundo</option>
+                        <option value="Frente">Frente</option>
+                        <option value="Teams">Teams</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="consulta-setor">Setor</label>
+                    <input type="text" id="consulta-setor">
+                </div>
+                <button type="button" onclick="consultMeetings()" class="button">Pesquisar</button>
+                <button type="button" onclick="downloadPDF()" class="button">Baixar PDF</button>
+            </form>
+            <ul id="consult-results"></ul>
+            <button onclick="toggleConsultForm()" class="button">Fechar</button>
+        </div>
+    </div>
+    <script src="reuniao.js"></script>
+</body>
+</html>
