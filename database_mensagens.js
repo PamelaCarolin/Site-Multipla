@@ -1,30 +1,17 @@
-const sqlite3 = require('sqlite3').verbose();
-const path = require('path');
+const { Pool } = require('pg');
 
-// Caminho completo para o arquivo do banco de dados
-const dbPath = path.join(__dirname, 'messages.sqlite');
-
-const db = new sqlite3.Database(dbPath, (err) => {
-    if (err) {
-        console.error('Erro ao conectar ao banco de dados:', err);
-    } else {
-        console.log('Conectado ao banco de dados SQLite.');
-    }
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL, // Variável de ambiente para a URL do PostgreSQL no Vercel
+  ssl: {
+    rejectUnauthorized: false // Apenas necessário se estiver usando um PostgreSQL com SSL forçado
+  }
 });
 
-db.serialize(() => {
-    // Criação da tabela messages, se não existir
-    db.run(`CREATE TABLE IF NOT EXISTS messages (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT NOT NULL,
-        photo TEXT NOT NULL,
-        text TEXT NOT NULL,
-        timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
-    )`, (err) => {
-        if (err) {
-            console.error('Erro ao criar tabela:', err);
-        }
-    });
+pool.on('connect', () => {
+  console.log('Conectado ao banco de dados PostgreSQL');
 });
 
-module.exports = db;
+module.exports = {
+  query: (text, params) => pool.query(text, params),
+  connect: () => pool.connect()
+};
