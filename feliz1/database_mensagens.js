@@ -1,17 +1,13 @@
+// /backend/models/db.js
 const { Pool } = require('pg');
 
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL, // Variável de ambiente no Vercel
+  connectionString: process.env.DATABASE_URL, // Adicione a URL do banco de dados no Vercel
   ssl: {
-    rejectUnauthorized: false // SSL forçado em muitos serviços de PostgreSQL
+    rejectUnauthorized: false
   }
 });
 
-pool.on('connect', () => {
-  console.log('Conectado ao banco de dados PostgreSQL');
-});
-
 module.exports = {
-  query: (text, params) => pool.query(text, params),
-  connect: () => pool.connect()
+  query: (text, params) => pool.query(text, params)
 };
