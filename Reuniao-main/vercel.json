@@ -8,9 +8,10 @@
     { "src": "/agendar", "dest": "/api/agendar.js" },
     { "src": "/cancelar", "dest": "/api/cancelar.js" },
     { "src": "/consultar", "dest": "/api/consultar.js" },
-    { "src": "/api/products", "dest": "/api/products.js" },
-    { "src": "/", "dest": "/public/reuniao.html" },
+    { "src": "/products", "dest": "/api/products.js" },
+    { "src": "/feliz1", "dest": "/feliz1/feliz1.html" },
+    { "src": "/papelaria", "dest": "/papelaria/index.html" },
+    { "src": "/reuniao", "dest": "/public/reuniao.html" },
     { "src": "/(.*)", "dest": "/public/$1" }
   ]
 }
-
