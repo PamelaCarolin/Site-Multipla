@@ -5,13 +5,12 @@
     { "src": "public/**/*", "use": "@vercel/static" }
   ],
   "routes": [
-    { "src": "/agendar", "dest": "/api/agendar.js" },
-    { "src": "/cancelar", "dest": "/api/cancelar.js" },
-    { "src": "/consultar", "dest": "/api/consultar.js" },
-    { "src": "/products", "dest": "/api/products.js" },
     { "src": "/feliz1", "dest": "/feliz1/feliz1.html" },
-    { "src": "/papelaria", "dest": "/papelaria/index.html" },
+    { "src": "/papelaria", "dest": "/papelaria/pagina1.html" },
     { "src": "/reuniao", "dest": "/public/reuniao.html" },
-    { "src": "/(.*)", "dest": "/public/$1" }
+    { "src": "/api/agendar", "dest": "/api/agendar.js" },
+    { "src": "/api/cancelar", "dest": "/api/cancelar.js" },
+    { "src": "/api/consultar", "dest": "/api/consultar.js" },
+    { "src": "/api/products", "dest": "/api/products.js" }
   ]
 }
