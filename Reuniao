@@ -7,7 +7,7 @@
   "routes": [
     { "src": "/feliz1", "dest": "/feliz1/feliz1.html" },
     { "src": "/papelaria", "dest": "/papelaria/pagina1.html" },
-    { "src": "/reuniao", "dest": "/public/reuniao.html" },
+    { "src": "/reuniao", "dest": "reuniao/public/reuniao.html" },
     { "src": "/api/agendar", "dest": "/api/agendar.js" },
     { "src": "/api/cancelar", "dest": "/api/cancelar.js" },
     { "src": "/api/consultar", "dest": "/api/consultar.js" },
