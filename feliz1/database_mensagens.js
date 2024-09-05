@@ -1,9 +1,9 @@
 const { Pool } = require('pg');
 
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL, // Variável de ambiente para a URL do PostgreSQL no Vercel
+  connectionString: process.env.DATABASE_URL, // Variável de ambiente no Vercel
   ssl: {
-    rejectUnauthorized: false // Apenas necessário se estiver usando um PostgreSQL com SSL forçado
+    rejectUnauthorized: false // SSL forçado em muitos serviços de PostgreSQL
   }
 });
 
