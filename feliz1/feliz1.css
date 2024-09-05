@@ -1,5 +1,6 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap");
+
 body {
   background: #34E1FF;
   font-family: "Fredoka One", cursive;
@@ -7,13 +8,14 @@ body {
   margin: 0;
 }
 
+/* Menu */
 .navbar {
   background-color: #1e3a8a;
   overflow: hidden;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 10px;
+  padding: 10px 20px;
   position: fixed;
   width: 100%;
   top: 0;
@@ -29,8 +31,9 @@ body {
 .nav-links {
   list-style: none;
   margin: 0;
-  padding: 2;
+  padding: 0;
   display: flex;
+  gap: 20px; /* Adiciona espaço entre os itens do menu */
 }
 
 .nav-links li {
@@ -38,15 +41,19 @@ body {
 }
 
 .nav-links a {
-  display: block;
+  display: inline-block; /* Corrige a exibição dos links */
   color: white;
   text-align: center;
-  padding: 28px 22px;
+  padding: 14px 22px; /* Ajusta o espaçamento interno dos links */
   text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px; /* Adiciona cantos arredondados */
 }
 
 .nav-links a:hover {
-  background-color: #dc2626;
+  background-color: #dc2626; /* Cor de fundo ao passar o mouse */
+  color: white; /* Garante que a cor do texto permaneça branca */
 }
 
 .dropdown-content {
@@ -345,234 +352,4 @@ body {
 #birthdays {
   margin-top: 50px;
   color: white;
-  font-size: 1.5em;
-  text-shadow: 1px 1px #2C3A49;
-}
-
-#chat {
-  background: rgb(52, 225, 255);
-  width: 300px;
-  height: 400px;
-  position: fixed;
-  bottom: 110px;
-  right: 20px;
-  box-sizing: border-box;
-  padding: 3em;
-  border-radius: 20px;
-  overflow: hidden;
-  z-index: 1000;
-}
-
-.chat__conversation-board {
-  padding: 1em 0 2em;
-  height: calc(100% - 95px);
-  overflow: auto;
-}
-
-.chat__conversation-panel {
-  background: #fdfeff;
-  border-radius: 12px;
-  padding: 0 1em;
-  height: 55px;
-  margin: 1em 0 0;
-  position: absolute;
-  bottom: 0;
-  width: calc(100% - 2em);
-}
-
-.chat__conversation-panel__container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  height: 100%;
-}
-
-.panel-item:not(:last-child) {
-  margin: 0 1em 0 0;
-}
-
-.chat__conversation-panel__button {
-  background: transparent;
-  height: 20px;
-  width: 30px;
-  border: 0;
-  padding: 0;
-  outline: none;
-  cursor: pointer;
-  position: relative;
-  bottom: 20px;
-}
-
-.add-file-button {
-  height: 30px;
-  min-width: 20px;
-  width: 22px;
-  background: transparent;
-  border-radius: 50%;
-  position: absolute;
-  bottom: 10px;
-  left: 20px;
-}
-
-.add-file-button svg {
-  width: 100%;
-  stroke: #000000;
-}
-
-.emoji-button {
-  min-width: 22px;
-  width: 5px;
-  height: 30px;
-  background: transparent;
-  border-radius: 50%;
-  position: absolute;
-  bottom: 10px;
-  left: 50px;
-}
-
-.emoji-button svg {
-  width: 100%;
-  fill: transparent;
-  stroke: #032866;
-}
-
-.chat__conversation-panel__input {
-  width: calc(100% - 20px);
-  padding: 1px;
-  border: 1px solid transparent; /* Borda transparente */
-  border-radius: 4px;
-  box-sizing: border-box;
-  margin-bottom: 10px;
-  color: #32CD32; /* Verde Limão (ou qualquer cor que escolher) */
-  background-color: white;
-  resize: none; /* Impede que o usuário redimensione manualmente */
-  overflow: hidden;
-  min-height: 40px; /* Altura mínima */
-  max-height: 200px; /* Altura máxima */
-}
-
-/* Estilo das mensagens */
-.message {
-  background: #f1f1f1;
-  padding: 10px;
-  margin: 5px 0;
-  border-radius: 5px;
-  color: #32CD32; /* Verde Limão (ou qualquer cor que escolher) */
-  word-wrap: break-word; /* Garante que palavras longas sejam quebradas */
-  white-space: pre-wrap; /* Mantém os espaços em branco e quebras de linha */
-  display: flex;
-  align-items: flex-start;
-  max-width: 90%; /* Limita a largura máxima da mensagem */
-}
-
-.message-content {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  word-break: break-word; /* Garante a quebra de linha */
-}
-
-.message-content .name {
-  font-size: 0.8em;
-  color: #666;
-  margin-bottom: 5px;
-}
-
-.message-content span {
-  white-space: pre-wrap; /* Mantém os espaços em branco e quebras de linha */
-  overflow-wrap: break-word; /* Garante que palavras longas sejam quebradas */
-}
-
-.message img {
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  margin-right: 10px;
-}
-
-/* Estilos para o modal */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgb(0, 0, 0);
-  background-color: rgba(0, 0, 0, 0.4);
-}
-
-.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-  max-width: 500px;
-  border-radius: 10px;
-}
-
-.close-button {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close-button:hover,
-.close-button:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-@media only screen and (max-width: 600px) {
-  #chat {
-    margin: 0;
-    border-radius: 0;
-  }
-  #chat .chat__conversation-board {
-    height: calc(100vh - 55px - 2em - 0.5em - 3em);
-  }
-  #chat .chat__conversation-board__message__options {
-    display: none !important;
-  }
-}
-#config-button {
-  background-color: #1e3a8a;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  padding: 5px 10px;
-  cursor: pointer;
-  margin: 10px 0;
-  width: auto;
-  min-width: 80px; /* Define a largura mínima menor */
-  margin-bottom: 15px; /* Espaçamento entre o botão e a área de texto */
-}
-
-#config-button:hover {
-  background-color: #dc2626;
-}
-
-.chat__conversation-panel__container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.chat__conversation-panel {
-  position: relative;
-  padding-top: 25px; /* Espaçamento superior para o botão Configurar Perfil */
-}
-
-#config-button {
-  position: absolute;
-  bottom: 75px; /* Ajuste para colocar o botão acima da área de texto */
-  left: 37%; /* Move 10 pixels para a esquerda */
-  transform: translateX(-50%);
-}
-
-/*# sourceMappingURL=feliz1.css.map */
+  font-size: 1.5em
