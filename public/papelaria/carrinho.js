@@ -1,4 +1,6 @@
 $(document).ready(function () {
+
+    // Função para obter o ID do usuário logado
     function getUserId() {
         return localStorage.getItem('userId');
     }
@@ -10,10 +12,11 @@ $(document).ready(function () {
         return;
     }
 
+    // Carregar o carrinho ao iniciar
     renderCart();
 
+    // Função para renderizar o carrinho
     function renderCart() {
-        // Fazendo requisição para buscar os produtos no carrinho a partir do banco de dados
         $.ajax({
             url: `/order/cart/${userId}`,
             method: 'GET',
@@ -41,7 +44,7 @@ $(document).ready(function () {
                     cartContainer.append(cartItem);
                 });
 
-                // Atualizar quantidade
+                // Atualizar quantidade do item no carrinho
                 $('.quantity').on('change', function () {
                     const id = $(this).data('id');
                     let newQuantity = parseInt($(this).val());
@@ -58,7 +61,7 @@ $(document).ready(function () {
                     updateCartItemQuantity(id, newQuantity);
                 });
 
-                // Remover item
+                // Remover item do carrinho
                 $('.remove-from-cart').on('click', function () {
                     const id = $(this).data('id');
                     removeCartItem(id);
@@ -70,6 +73,7 @@ $(document).ready(function () {
         });
     }
 
+    // Função para atualizar a quantidade de itens no carrinho
     function updateCartItemQuantity(id, quantity) {
         $.ajax({
             url: '/order/update-quantity',
@@ -77,7 +81,7 @@ $(document).ready(function () {
             contentType: 'application/json',
             data: JSON.stringify({ id, quantity }),
             success: function () {
-                renderCart();
+                renderCart(); // Recarrega o carrinho após a atualização
             },
             error: function (error) {
                 console.error('Erro ao atualizar a quantidade do item:', error);
@@ -85,6 +89,7 @@ $(document).ready(function () {
         });
     }
 
+    // Função para remover um item do carrinho
     function removeCartItem(id) {
         $.ajax({
             url: '/order/remove-item',
@@ -92,7 +97,7 @@ $(document).ready(function () {
             contentType: 'application/json',
             data: JSON.stringify({ id }),
             success: function () {
-                renderCart();
+                renderCart(); // Recarrega o carrinho após a remoção
             },
             error: function (error) {
                 console.error('Erro ao remover o item do carrinho:', error);
@@ -100,6 +105,7 @@ $(document).ready(function () {
         });
     }
 
+    // Confirmar o pedido
     $('#confirmOrderBtn').on('click', function () {
         $.ajax({
             url: '/order/confirm',
@@ -108,11 +114,12 @@ $(document).ready(function () {
             data: JSON.stringify({ userId }),
             success: function () {
                 alert('Pedido confirmado! Será enviado para sua conta.');
-                renderCart();
+                renderCart(); // Recarrega o carrinho após confirmar o pedido
             },
             error: function (error) {
                 console.error('Erro ao confirmar o pedido:', error);
             }
         });
     });
+
 });
