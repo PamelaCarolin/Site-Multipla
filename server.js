@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const http = require('http');
 const socketIo = require('socket.io');
-const db = require('./database_mensagens'); // Importa o banco de dados de mensagens
+const db = require('./public/feliz/database_mensagens'); // Certifique-se que o caminho para o banco de dados está correto
 
 const app = express();
 const server = http.createServer(app);
@@ -14,9 +14,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Middleware para fazer parsing do body como JSON
 app.use(express.json());
 
-// Rotas
+// Rota inicial: Serve a página de Reunião
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'feliz1.html'));  // Serve o arquivo inicial (ajuste conforme necessário)
+  res.sendFile(path.join(__dirname, 'public', 'reuniao', 'reuniao.html'));  // Página inicial de reunião
+});
+
+// Rota para a página de Aniversariante (Feliz)
+app.get('/feliz', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'feliz', 'feliz1.html'));  // Página de aniversariantes
+});
+
+// Rota para a página de Papelaria
+app.get('/papelaria', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'papelaria', 'carrinho.html'));  // Página de papelaria
 });
 
 // Exemplo de endpoint para agendamento de reunião (reunião.js)
