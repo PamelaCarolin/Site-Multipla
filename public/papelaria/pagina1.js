@@ -13,10 +13,12 @@ $(document).ready(function () {
         return;
     }
 
+    // Toggle do menu para mobile
     $('.menu-toggle').on('click', function () {
         $('.nav ul').toggleClass('active');
     });
 
+    // Função para carregar os produtos a partir do arquivo Excel
     function loadProducts() {
         $.ajax({
             url: './produtos/Papelaria_produto.xlsx',
@@ -35,9 +37,9 @@ $(document).ready(function () {
                     console.log(products); // Debug: Exibir produtos no console
 
                     allProducts = products; // Armazenar produtos na variável global
-                    renderProducts('all', products);
+                    renderProducts('all', products); // Renderiza os produtos
                 };
-                reader.readAsArrayBuffer(data);
+                reader.readAsArrayBuffer(data); // Lê o arquivo Excel
             },
             error: function (error) {
                 console.error('Erro ao carregar os produtos:', error);
@@ -45,9 +47,10 @@ $(document).ready(function () {
         });
     }
 
+    // Função para renderizar os produtos no HTML
     function renderProducts(filter, products) {
         const container = $('#productContainer');
-        container.empty();
+        container.empty(); // Limpa o container
         const filteredProducts = products.filter(product => filter === 'all' || product.Categoria === filter);
         
         if (filteredProducts.length === 0) {
@@ -67,8 +70,10 @@ $(document).ready(function () {
         }
     }
 
+    // Carregar produtos assim que a página é carregada
     loadProducts();
 
+    // Filtro de produtos por categoria
     $('.filter-item').on('click', function () {
         const filter = $(this).data('filter');
         renderProducts(filter, allProducts); // Usar a lista global de produtos
@@ -76,19 +81,21 @@ $(document).ready(function () {
         $(this).addClass('active');
     });
 
+    // Pesquisa de produtos
     $('#searchForm').on('submit', function (e) {
         e.preventDefault();
         const searchTerm = $('#searchInput').val().toLowerCase();
         const filteredProducts = allProducts.filter(product => product.Produto.toLowerCase().includes(searchTerm));
-        renderProducts('all', filteredProducts);
+        renderProducts('all', filteredProducts); // Renderiza os produtos filtrados
     });
 
+    // Adicionar produto ao carrinho
     $(document).on('click', '.add-to-cart', function () {
         const id = $(this).data('id');
         const category = $(this).data('category');
         const product = allProducts.find(p => p.Produto === id);
 
-        // Aqui fazemos a requisição para o servidor adicionar o produto no banco de dados
+        // Faz requisição para adicionar o produto ao carrinho
         $.ajax({
             url: '/order/add-to-cart',
             method: 'POST',
@@ -113,6 +120,7 @@ $(document).ready(function () {
         });
     });
 
+    // Função para mostrar o popup de confirmação
     function showPopup(message) {
         const popup = $('<div class="popup"></div>').text(message);
         $('body').append(popup);
