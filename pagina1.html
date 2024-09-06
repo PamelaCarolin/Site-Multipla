@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja de Papelaria Moderna</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="pagina1.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html"><img src="logo.png" alt="Logo"></a>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="/papelaria/pagina1.html">Menu</a></li>
+                    <li><a href="/papelaria/carrinho/carrinho.html">Carrinho</a></li>
+                    <li><a href="/pagina1/pagina1.html">Voltar</a></li>
+                                  
+                </ul>
+            </nav>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="search">
+            <div class="container">
+                <h1>Buscar Produtos</h1>
+                <form id="searchForm">
+                    <input type="text" id="searchInput" placeholder="Buscar produtos...">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+        </section>
+        <section class="filters">
+            <div class="container">
+                <div class="filter-item" data-filter="all">Todos</div>
+                <div class="filter-item" data-filter="Canetas">Canetas</div>
+                <div class="filter-item" data-filter="Organizadores">Organizadores</div>
+                <div class="filter-item" data-filter="Acessórios">Acessórios</div>
+                <div class="filter-item" data-filter="Papel">Papel</div>
+                <div class="filter-item" data-filter="Utilitários">Utilitários</div>
+            </div>
+        </section>
+        <section class="products">
+            <div class="container" id="productContainer">
+                <!-- Produtos serão carregados aqui dinamicamente -->
+            </div>
+        </section>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+    <script src="pagina1.js"></script>
+    <script src="/menu.js"></script>
+
+</body>
+</html>
