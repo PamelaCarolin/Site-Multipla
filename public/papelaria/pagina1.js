@@ -5,18 +5,6 @@ if (typeof $ === 'undefined') {
     $(document).ready(function () {
         let allProducts = []; // Variável global para armazenar os produtos
 
-        // Função para obter o ID do usuário logado
-        function getUserId() {
-            return localStorage.getItem('userId');
-        }
-
-        const userId = getUserId();
-        if (!userId) {
-            alert('Você precisa estar logado para adicionar produtos ao carrinho.');
-            window.location.href = 'http://192.168.0.123:3001/logar/login.html'; // Redireciona para a página de login se o usuário não estiver logado
-            return;
-        }
-
         // Toggle do menu para mobile
         $('.menu-toggle').on('click', function () {
             $('.nav ul').toggleClass('active');
