@@ -1,17 +1,5 @@
 $(document).ready(function () {
 
-    // Função para obter o ID do usuário logado
-    function getUserId() {
-        return localStorage.getItem('userId');
-    }
-
-    const userId = getUserId();
-    if (!userId) {
-        alert('Você precisa estar logado para visualizar o carrinho.');
-        window.location.href = 'http://192.168.0.123:3001/logar/login.html';
-        return;
-    }
-
     // Carregar o carrinho ao iniciar
     renderCart();
 
