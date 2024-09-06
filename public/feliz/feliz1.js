@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
     localStorage.setItem('userName', userName);
   }
 
-  // Função para ajustar a altura do input
+  // Função para ajustar a altura do input de mensagens
   function adjustInputHeight() {
     messageInput.style.height = 'auto';
     messageInput.style.height = (messageInput.scrollHeight) + 'px';
@@ -151,6 +151,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
+  // Função para exibir os aniversariantes
   function displayBirthdays(birthdays) {
     const birthdaysDiv = document.getElementById('birthdays');
     if (birthdays.length > 0) {
@@ -162,7 +163,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   fetchBirthdays();
 
-  // Eventos
+  // Eventos de mensagens
   messageInput.addEventListener('focus', function() {
     if (!userName || !userPhoto) {
       openModal();
