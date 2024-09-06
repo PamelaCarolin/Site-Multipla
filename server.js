@@ -16,7 +16,7 @@ app.use(express.json());
 
 // Rotas
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'feliz1.html')); // Rota para página principal
+  res.sendFile(path.join(__dirname, 'public', 'feliz1.html'));  // Serve o arquivo inicial (ajuste conforme necessário)
 });
 
 // Exemplo de endpoint para agendamento de reunião (reunião.js)
